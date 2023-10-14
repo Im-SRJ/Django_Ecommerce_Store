@@ -1,2 +1,4 @@
+.vscode/settings.json
+.coverage
 .vscode/
 .venv/
