@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,6 +27,14 @@ SECRET_KEY = "django-insecure--y2a2@&$7iha$j_s!r)ccys)qhobl9i17n8r_8bgrs)31(%eua
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+env = environ.Env(
+    # set casting, default value
+    # DEBUG=(bool, False)
+)
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 ALLOWED_HOSTS = []
 
@@ -136,5 +146,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom user model
 AUTH_USER_MODEL = "account.CustomUser"
-LOGIN_REDIERECT_URL = "/account/dashboard"
+LOGIN_REDIRECT_URL = "/account/dashboard/"
 LOGIN_URL = "/account/login"
+
+
+# Email
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = env("EMAIL_HOST")
+# EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+# EMAIL_PORT = env("EMAIL_PORT")
+
+# Email setting
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
