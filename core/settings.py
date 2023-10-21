@@ -36,7 +36,7 @@ env = environ.Env(
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     "store",
     "basket",
     "account",
+    "payment",
+    "orders",
 ]
 
 MIDDLEWARE = [
@@ -161,3 +163,10 @@ LOGIN_URL = "/account/login"
 
 # Email setting
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# Stripe
+STRIPE_API_KEY = env("STRIPE_API_KEY")
+
+# Basket session ID
+BASKET_SESSION_ID = "basket"
