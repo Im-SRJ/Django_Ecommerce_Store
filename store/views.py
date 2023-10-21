@@ -8,14 +8,14 @@ def categories(request):
     return {"categories": Category.objects.all()}
 
 
-def all_products(request):
+def index(request):
     products = Product.objects.filter(is_active=True)
-    return render(request, "store/home.html", {"products": products})
+    return render(request, "store/index.html", {"products": products})
 
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
-    return render(request, "store/products/single.html", {"product": product})
+    return render(request, "store/single.html", {"product": product})
 
 
 def category_list(request, slug):
@@ -23,6 +23,6 @@ def category_list(request, slug):
     products = Product.objects.filter(category=category)
     return render(
         request,
-        "store/products/categoery.html",
+        "store/categoery.html",
         {"products": products, "category": category},
     )

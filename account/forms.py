@@ -150,28 +150,27 @@ class UserEditForm(forms.ModelForm):
     )
 
     username = forms.CharField(
-        label="Firstname",
-        min_length=4,
-        max_length=50,
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control mb-3",
-                "placeholder": "Username",
-                "id": "form-firstname",
-                "readonly": "readonly",
-            }
-        ),
-    )
-
-    first_name = forms.CharField(
         label="Username",
         min_length=4,
         max_length=50,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control mb-3",
-                "placeholder": "Firstname",
-                "id": "form-lastname",
+                "placeholder": "Username",
+                "id": "form-username",
+            }
+        ),
+    )
+
+    first_name = forms.CharField(
+        label="First Name",
+        min_length=4,
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control mb-3",
+                "placeholder": "first name",
+                "id": "form-firstname",
             }
         ),
     )

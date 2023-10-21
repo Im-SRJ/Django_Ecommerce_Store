@@ -1,4 +1,5 @@
 import json
+import os
 
 import stripe
 from django.conf import settings
@@ -29,12 +30,19 @@ def BasketView(request):
     total = total.replace(".", "")
     total = int(total)
 
-    stripe.api_key = settings.STRIPE_API_KEY
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
         amount=total, currency="inr", metadata={"userid": request.user.id}
     )
 
-    return render(request, "payment/home.html", {"client_secret": intent.client_secret})
+    return render(
+        request,
+        "payment/payment_form.html",
+        {
+            "client_secret": intent.client_secret,
+            "STRIPE_PUBLISHABLE_KEY": settings.STRIPE_PUBLISHABLE_KEY,
+        },
+    )
 
 
 @csrf_exempt

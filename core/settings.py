@@ -166,7 +166,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # Stripe
-STRIPE_API_KEY = env("STRIPE_API_KEY")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY")
 
 # Basket session ID
 BASKET_SESSION_ID = "basket"
