@@ -6,7 +6,6 @@ from django.contrib.auth.models import (
 from django.core.mail import send_mail
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django_countries.fields import CountryField
 
 
 class CustomAccountManager(BaseUserManager):
@@ -39,7 +38,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=150, blank=True)
     about = models.TextField(_("about"), max_length=500, blank=True)
     # Delivery details
-    country = CountryField()
     phone_number = models.CharField(max_length=15, blank=True)
     postcode = models.CharField(max_length=12, blank=True)
     address_line_1 = models.CharField(max_length=150, blank=True)
