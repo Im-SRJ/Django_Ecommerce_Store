@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -43,7 +44,11 @@ class ProductType(models.Model):
     of products that are for sale.
     """
 
-    name = models.CharField(help_text=_("Required"), max_length=255, unique=True)
+    name = models.CharField(
+        help_text=_("Required"),
+        max_length=255,
+        unique=True,
+    )
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -120,6 +125,9 @@ class Product(models.Model):
         _("Created at"), auto_now_add=True, editable=False
     )
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
+    users_wishlist = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True
+    )
 
     class Meta:
         ordering = ("-created_at",)
